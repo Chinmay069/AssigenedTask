@@ -1,0 +1,21 @@
+package com.aic.prelogger;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.aic.prelogger.loggerclass.Logger;
+
+@Controller
+public class HelloController {
+
+	@RequestMapping("/homepage")
+	public ModelAndView helloWorld() {
+
+		ModelAndView model = new ModelAndView("MyPage");
+		model.addObject("msg","Checking the content");
+		
+		Logger.loggers.warn("Project working fine with the file appender");
+		return model;
+	}
+}
