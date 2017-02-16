@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+     <!--  <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern> -->
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %C:%M %-5p %c{1}:%L - %m%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>C:\Logbacktwo/AICLog.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+   
+      <fileNamePattern>C:\Logbacktwo/AICLog.%d{yyyy-MM-dd-HH-mm}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+          class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        
+        <maxFileSize>1KB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+      
+      <maxHistory>5</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+   	<Pattern>%d{yyyy-MM-dd HH:mm:ss} %C:%M %-5p %c{1}:%L - %m%n</Pattern>
+    </encoder>
+  </appender> 
+	
+	
+	 <logger name="FILE" level="INFO" additivity="false">
+            <appender-ref ref="FILE" />
+	</logger>
+
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
